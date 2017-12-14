@@ -1,0 +1,37 @@
+= Asciidoctor =
+Delaby Pierre
+:icons: font
+:toc:
+:nofooter:
+:source-highlighter: coderay
+:stylesheet: asciidoctor.css
+
+
+== Cas usuel
+
+Pour surveiller, utiliser `guard start`.
+
+Sinon pour builder simplement : `asciidoctor mydoc.adoc`
+
+Utiliser un plugin chrome _Auto refresh_ pour rafraichir tout seul la page
+
+https://atom.io/[Atom] supporte l'autocompletion
+
+== Installation
+
+* Installer ruby
+* Pour le guard start `gem install guard guard-shell`
+
+== Code
+
+Pour le code, il faut  :
+
+* installer _coderay_ : `gem install coderay`
+* l'activer en haut des fichiers : `:source-highlighter: coderay`
+
+== Les icones
+
+IMPORTANT: Les icônes passent pas ?
+
+Pour que les icons fonctionnent, il faut que `:icons: font` soit à la première ligne.
+De plus, avec _guard_, ils ne marchent pas...

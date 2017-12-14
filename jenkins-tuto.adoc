@@ -1,0 +1,86 @@
+= PIC
+Delaby Pierre
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: coderay
+:stylesdir: css/
+:stylesheet: asciidoctor.css
+
+
+== Tomcat
+=== Installer et configurer
+* télécharger tomcat :  `wget http://wwwftp.ciril.fr/pub/apache/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz`
+* dézipper tomcat
+* editer `vim conf/tomcat-users.xml` et ajouter
+.tomcat-users.xml
+[source, xml]
+----
+<role rolename="manager-script"/>
+<role rolename="manager-gui"/>
+<user username="admin" password="monkey" roles="manager-gui"/>
+<user username="deploy" password="monkey" roles="manager-script"/>
+----
+
+* editer `vim conf/server.xml` et changer les ports
+
+=== Deployer et supprimer en commande
+
+Pour deployer :
+
+`wget --http-user=xxx --http-password=xxx 'http://localhost:8081/manager/text/deploy?war=file:/var/lib/jenkins/workspace/demo-rest-back/target/demo-rest-back.war&path=/demo-rest-back' -O -`
+
+Pour supprimer :
+
+`wget --http-user=xxx --http-password=xxx 'http://localhost:8081/manager/text/undeploy?path=/demo-rest-back' -O -`
+
+
+
+== Jenkins
+
+=== Pipeline: lire une propriété
+
+* installer le plugin _Pipeline Utility Steps_ qui va permettre de read le file
+* lire la propriété dans la pipeline
+
+.Jenkinsfile
+[source, groovy]
+----
+pipeline {
+    agent any
+
+  environment {
+    def props = readProperties  file:'/var/lib/jenkins/jobconf/tomcat.properties'
+    def deployUrl= "${props['tomcat.deploy.url']}"
+  }
+    stages {
+        stage('prepare'){
+            steps{
+                echo "${deployUrl}"
+            }
+        }
+
+    }
+
+}
+----
+
+=== Pipeline : utiliser des credentials
+* Utiliser la gestion des credentials pour ajouter par ex des credentials tomcatdeploy
+* la pipeline
+.Jenkinsfile
+[source, groovy]
+----
+pipeline {
+    agent any
+    stages {
+        stage('prepare'){
+            steps{
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tomcatdeploy', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                        sh 'echo uname=$USERNAME pwd=$PASSWORD'
+                }
+            }
+        }
+    }
+}
+----
