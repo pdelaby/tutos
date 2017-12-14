@@ -18,8 +18,8 @@ Delaby Pierre
 ----
 <role rolename="manager-script"/>
 <role rolename="manager-gui"/>
-<user username="admin" password="monkey" roles="manager-gui"/>
-<user username="deploy" password="monkey" roles="manager-script"/>
+<user username="admin" password="password" roles="manager-gui"/>
+<user username="deploy" password="password" roles="manager-script"/>
 ----
 
 * editer `vim conf/server.xml` et changer les ports
@@ -34,7 +34,9 @@ Pour supprimer :
 
 `wget --http-user=xxx --http-password=xxx 'http://localhost:8081/manager/text/undeploy?path=/demo-rest-back' -O -`
 
+TIP: Dans une pipeline jenkins, il est nécessaire de supprimer avant de deployer sinon ça échouera
 
+TIP: Le chemin du war doit être en absolu
 
 == Jenkins
 
@@ -42,6 +44,8 @@ Pour supprimer :
 
 * installer le plugin _Pipeline Utility Steps_ qui va permettre de read le file
 * lire la propriété dans la pipeline
+
+WARNING: Pour récuperer la propriété (def ...) il faut bien utiliser les guillements
 
 .Jenkinsfile
 [source, groovy]
@@ -68,6 +72,7 @@ pipeline {
 === Pipeline : utiliser des credentials
 * Utiliser la gestion des credentials pour ajouter par ex des credentials tomcatdeploy
 * la pipeline
+
 .Jenkinsfile
 [source, groovy]
 ----
