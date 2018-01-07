@@ -1,0 +1,54 @@
+= JHipster
+Delaby Pierre
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: coderay
+:stylesdir: css/
+:stylesheet: asciidoctor.css
+
+
+== Ressources
+https://developer.okta.com/blog/2017/06/20/develop-microservices-with-jhipster
+
+
+== Registry
+
+Il dans /registry
+
+* Front : `yarn`, ça suffit pour builder un coup.
+* Back : `mvn spring-boot:run` ;
+* Connection :  _http://localhost:8761_
+* admin/admin
+
+=== erreur 500 swagger
+
+Si, depuis swagger, quand on essaye d'afficher l'API d'un microservice, il fait une _500 access denied_, vérifier si le cisco de cap' est pas démarré - et l'eteindre.
+Sinon, aller dans le registry :
+
+.applycation.yml
+[source, yaml]
+----
+  eureka:
+      instance:
+          appname: jhipster-registry
+          instanceId: jhipsterRegistry:${spring.application.instance_id:${random.value}}
+          prefer-ip-address: false // <1>
+----
+<1> changer de `true` à `false`
+
+
+
+== Gateway
+
+Il est dans /gateway
+
+* Front : `yarn start`, ça suffit pour builder un coup.
+* Back : `mvn spring-boot:run` ;
+
+
+== online shop
+
+On l'utilise a travers la gateway
+
+ * Back : `mvn spring-boot:run` ;

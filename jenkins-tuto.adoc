@@ -124,3 +124,30 @@ Attention, par défaut les JS et CSS ne sont pas pris en compte dans les rapport
 ** modifier `JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true '-Dhudson.model.DirectoryBrowserSupport.CSP= ' "``
 
 Ici, une propriété pointe vers le path de tomcat, et les répertoires sont créés dans _webapps_.
+De plus l'utilisateur jenkins à des droits pour publier sur tomcat (autorisation d'ecriture)
+
+
+== Docker Jenkins
+
+=== References :
+* https://www.youtube.com/watch?v=6BIry0cepz4[30 Jenkins features and plugins you wished you had known about before! by Joep Weijers]
+
+=== Jenkins :
+* `docker run -p 8080 -p 50000:50000 jenkinsci/jenkins:latest`
+* plugins  TODO automate
+* manage > Configure Global Security >  authorization : role -based strategy
+
+=== Plugins
+. Installer les plugins lors du premier usage
+. Lister les plugins installés
+
+
+== Docker Sonar
+
+=== Reference
+* http://blog.baudson.de/blog/running-a-local-sonarqube-with-docker
+
+=== Installation
+
+* `docker pull sonarqube`
+* `docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:lastest`
