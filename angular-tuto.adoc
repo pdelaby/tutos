@@ -13,13 +13,13 @@ Delaby Pierre
 Quand `npm install` fonctionne pas a cause du composant _Visual C++ "VCBuild.exe"_,
 il suffit de faire :
 
-* `npm install --global --production windows-build-tools` * `npm update`
+* `npm install --global --production windows-build-tools`
+* `npm update`
 
 
 == Ng
 
-Si ng ne fonctionne pas ou n'est pas trouvé :
- * `npm install -g @angular/cli`
+Si ng ne fonctionne pas ou n'est pas trouvé : `npm install -g @angular/cli`
 
 == Jenkins
 
@@ -31,5 +31,6 @@ Sur la plateforme il faut d'abord installer l'environnement
  * Installer bzip2 sinon rien ne marche : `sudo yum install bzip2`
 
 Configurer npm ?
+
 * npmrc vim `/usr/etc/npmrc`
 * y ajouter `phantomjs_cdnurl=https://bitbucket.org/ariya/phantomjs/downloads`

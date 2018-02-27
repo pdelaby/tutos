@@ -33,7 +33,7 @@ export CATALINA_OPTS="$CATALINA_OPTS -XX:MaxPermSize=512m"
 ----
 
 * eventuellement, pour voir les logs, faire l'étape _Voir les logs_
-* Maintenant, copier/coller le dossier `tcat1` autant de fois que nécessaire (ex : `tcat2` et `tcat3`) et changer les ports à chaque fois pour de nouvelles valeurs.
+* Maintenant, copier/coller le dossier `tcat1` autant de fois que nécessaire (ex : `tcat2` et `tcat3`) et changer les ports à chaque fois pour de nouvelles valeurs dans server.xml ET DANS LA CONF LOGS (le fichier logs.xml)
 
 === Configurer la base
 
