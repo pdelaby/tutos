@@ -8,6 +8,10 @@ Delaby Pierre
 :stylesheet: asciidoctor.css
 
 
+== INstaller Jenkinsfile
+
+* Suivre : https://www.vultr.com/docs/how-to-install-jenkins-on-centos-7
+
 == Tomcat
 === Installer et configurer
 * télécharger tomcat :  `wget http://wwwftp.ciril.fr/pub/apache/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz`

@@ -1,0 +1,14 @@
+= Images
+Delaby Pierre
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: coderay
+:stylesdir: css/
+:stylesheet: asciidoctor.css
+
+== webp
+
+Pour le mettre en png :
+* `csudo choco install ffmpeg -y`
+* `ffmpeg -i truc.webp truc.png` 

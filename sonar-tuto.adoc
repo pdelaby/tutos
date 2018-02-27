@@ -109,7 +109,7 @@ AllowEncodedSlashes NoDecode
 
 == Scanner
 
-Commande simple : `mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=73bb7fe6fdab5cbb5fe57b478236932a73643855`
+Commande simple : `mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=73bLOGIN643855`
 
 === Scanner classique
 * téléchargement : https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-windows.zip
@@ -131,8 +131,24 @@ Commande simple : `mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsona
 ** checker _Enable injection of SonarQube server configuration as build environment variables_
 
 
+=== Vrac
+
+sonar-scanner.bat -Dsonar.projectKey=projectkey -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=8d99c03a40de7b477ab69d2a3f700d4d16a09c13
+
 === Python
 
 * tuto : https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner#AnalyzingwithSonarQubeScanner-Installation
 
-==
+=== Angular project
+
+On peut simplement faire `sonar-scanner.bat -Dsonar.projectKey=projectkey -Dsonar.language=ts -Dsonar.sources=src/app/ -Dsonar.host.url=http://localhost:9000 -Dsonar.login=laclefgeneree`
+
+Ou `sonar-scanner.bat -Dsonar.projectKey=projectkey -Dsonar.language=ts -Dsonar.sources=src/app/ -Dsonar.host.url=http://localhost:9000 -Dsonar.login=73bLOGIN643855`
+
+== Installer le runner sur centos
+Sinon
+* installer sur centos : `wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip`
+* `sudo unzip sonar-scanner-cli-3.0.3.778-linux.zip -d /opt/sonarqube/`
+* `sudo mv /opt/sonarqube/sonar-scanner-3.0.3.778-linux/ /opt/sonarqube/sonar-scanner`
+*  `sudo ln -s /opt/sonarqube/sonar-scanner/bin/sonar-scanner /opt/sonar-scanner`
+* ou l'ajouter dans `/etc/profile.d/global_aliases.sh` ( `alias sonar-scanner='/opt/sonarqube/sonar-scanner/bin/sonar-scanner'`)

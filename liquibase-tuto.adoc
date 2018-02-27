@@ -1,0 +1,42 @@
+= Liquibase
+Delaby Pierre
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: coderay
+:stylesdir: css/
+:stylesheet: asciidoctor.css
+
+== Initialisation
+Liquibase, dans JHipster
+
+J'ai par exemple un fichier csv
+
+.init-materiel.csv
+[source, csv]
+----
+id, nom, marque
+1,Chaudière Viessmann Gaz,Viessmann
+2,Chaudière Viessmann Fioul,Viessmann
+3,Chaudière Frisquet Basse Consommation,Frisquet
+----
+
+et je le charge en utilisant un nouveau changeset
+
+.added_machin.xml
+[source, xml]
+----
+<changeSet id="20180111162213-1" author="pdelaby">
+  <loadUpdateData  catalogName="materiel"
+          encoding="UTF-8"
+          file="init-materiel.csv"
+          relativeToChangelogFile="true"
+          separator=","
+          primaryKey="id"
+          tableName="materiel">
+      <column name="id" type="numeric"/>
+      <column name="nom" type="string"/>
+      <column name="marque" type="string"/>
+  </loadUpdateData >
+</changeSet>
+----

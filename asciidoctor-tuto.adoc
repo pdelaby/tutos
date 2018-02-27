@@ -1,9 +1,10 @@
 = Asciidoctor =
 Delaby Pierre
 :icons: font
-:toc:
+:toc: left
 :nofooter:
 :source-highlighter: coderay
+:stylesdir: css/
 :stylesheet: asciidoctor.css
 
 
