@@ -1,0 +1,8 @@
+= Template =
+Delaby Pierre
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: coderay
+
+== Template
