@@ -1,4 +1,4 @@
-#baseURL = "localhost:1313/"
+baseURL = "http://vps575474.ovh.net:1314/"
 languageCode = "fr-fr"
 title = "Pdelaby - Tutos"
 # Change the default theme to be use when building the site with Hugo
