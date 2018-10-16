@@ -96,6 +96,13 @@ pipeline {
 ```
 
 
+### Nettoyer le workspace
+
+En groovy : 
+```groovy
+ cleanWs()
+```
+
 ### Deployer un rapport
 Pour déployer un rapport, utiliser une step après les stages
 
