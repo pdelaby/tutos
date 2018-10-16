@@ -100,7 +100,9 @@ pipeline {
 
 En groovy : 
 ```groovy
+stage('nettoyage'){
  cleanWs()
+}
 ```
 
 ### Deployer un rapport
