@@ -1,4 +1,4 @@
-baseURL = "http://vps575474.ovh.net:1314/"
+baseURL = "/"
 languageCode = "fr-fr"
 title = "Pdelaby - Tutos"
 # Change the default theme to be use when building the site with Hugo
@@ -13,6 +13,7 @@ features = []
   #showVisitedLinks = true
   themeVariant = "blue"
   tocMode = "aside" # navbar | aside | page
+
 
 # For search functionnality
 [outputs]
