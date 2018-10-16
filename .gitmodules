@@ -1,3 +1,3 @@
-[submodule "site\\themes\\hugo-theme-learn-pdy"]
-	path = site\\themes\\hugo-theme-learn-pdy
+[submodule "site/themes/hugo-theme-learn-pdy"]
+	path = site/themes/hugo-theme-learn-pdy
 	url = https://github.com/pdelaby/hugo-theme-learn.git
