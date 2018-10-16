@@ -3,6 +3,6 @@ services:
     pdytutos:    
       container_name: pdytutos
       build: .
-      image: pdy/tutos
+      image: pdy/tutos:latest
       ports:
         - 1314:1313
