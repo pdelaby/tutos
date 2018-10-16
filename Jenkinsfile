@@ -9,7 +9,7 @@ node {
 
 	def dockerImage
     stage('build docker') {
-        dockerImage = docker.build('pdy-doc', '.')
+        dockerImage = docker.build('pdy/tutos', '.')
     }
 		
 	stage('start docker'){			
