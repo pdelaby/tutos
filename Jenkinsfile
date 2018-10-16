@@ -13,7 +13,7 @@ node {
     }
 		
 	stage('start docker'){			
-		sh "docker-compose -f gohugo.yml stop"
-		sh "docker-compose -f gohugo.yml up -d "
+		sh "docker-compose stop"
+		sh "docker-compose up -d "
 	}
 }
