@@ -15,11 +15,11 @@ Utilisation de VsCode recommandée
 
 * `hugo new site quickstart`
 * `cd quickstart` 
-* `git init`
+* `git init .`
 * Thème
- * `git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke`
  * `git submodule add https://github.com/matcornic/hugo-theme-learn.git themes/learn`
- *  `echo 'theme = "learn"' >> config.toml`
+ * `git submodule add https://github.com/pdelaby/hugo-theme-learn.git themes/learn-pdy` (learn avec des tags, en cours)
+ * `echo 'theme = "learn"' >> config.toml`
 
 {{% notice warning %}}
 Attention, si il y a un submodule, il faut spécifier `--recurse-submodules` lors du clônage du dépot : `git clone --recurse-submodules https//monurl`
