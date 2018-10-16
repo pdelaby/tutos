@@ -1,6 +1,5 @@
 #!/usr/bin/env groovy
 
-
 node {
 	 
 	stage('checkout'){
@@ -11,9 +10,12 @@ node {
     stage('build docker') {
         dockerImage = docker.build('pdy/tutos', '.')
     }
-		
-	stage('start docker'){			
+
+	stage('stop docker'){
 		sh "docker-compose stop"
+	}
+
+	stage('start docker'){			
 		sh "docker-compose up -d "
 	}
 }
