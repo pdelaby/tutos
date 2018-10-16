@@ -1,18 +1,17 @@
-= JHipster
-Delaby Pierre
-:icons: font
-:toc: left
-:nofooter:
-:source-highlighter: coderay
-:stylesdir: css/
-:stylesheet: asciidoctor.css
+---
+title: "Jhipster"
+date: 2018-10-15T10:25:04+02:00
+draft: false
+tags: ["java","jhipster"]
+---
 
 
-== Ressources
+## Ressources
+
 https://developer.okta.com/blog/2017/06/20/develop-microservices-with-jhipster
 
 
-== Registry
+##  Registry
 
 Il dans /registry
 
@@ -21,30 +20,29 @@ Il dans /registry
 * Connection :  _http://localhost:8761_
 * admin/admin
 
-== Problèmes
+## Problèmes
 
-=== erreur 500 swagger
+### erreur 500 swagger
 
 Si, depuis swagger, quand on essaye d'afficher l'API d'un microservice, il fait une _500 access denied_, vérifier si le cisco de cap' est pas démarré - et l'eteindre.
 Sinon, aller dans le registry :
 
-.applycation.yml
-[source, yaml]
-----
+**applycation.yml**
+```yaml
   eureka:
       instance:
           appname: jhipster-registry
           instanceId: jhipsterRegistry:${spring.application.instance_id:${random.value}}
           prefer-ip-address: false // <1>
-----
+```
 <1> changer de `true` à `false`
 
-=== Page blanche
+## Page blanche
 
 Probalement un mvn clean. il faut run `yarn build` et relancer l'appli.
 
 
-== Gateway
+## Gateway
 
 Il est dans /gateway
 
@@ -52,19 +50,19 @@ Il est dans /gateway
 * Back : `mvn spring-boot:run` ;
 
 
-== online shop
+## online shop
 
 On l'utilise a travers la gateway
 
  * Back : `mvn spring-boot:run` ;
 
-== JDL
+## JDL
 
 Pour importer : `jhipster import-jdl ./my-jdl-file.jdl`
 
-== Developpement
+## Developpement
 
-=== Script d'initialisation
+### Script d'initialisation
 
 Avec une base de dev H2 in-memory ou disk, JHipster utilise liquibase :
 
@@ -74,17 +72,16 @@ Avec une base de dev H2 in-memory ou disk, JHipster utilise liquibase :
 Il est possible d'utiliser plutôt un fichier SQL pour charger les données. Pour ce faire :
 
 * Changer la configuration de `application-dev.yml`
-** Commenter la ligne `spring.datasource.type : com.zaxer...`
-** Rajouter les lignes
-*** `spring.datasource.platform: h2`
-*** `spring.datasource.initialize: true`
-*** `spring.jpa.properties.hibernate.hbm2ddl.auto: create-drop`
+ * Commenter la ligne `spring.datasource.type : com.zaxer...`
+ * Rajouter les lignes
+  * `spring.datasource.platform: h2`
+  * `spring.datasource.initialize: true`
+  * `spring.jpa.properties.hibernate.hbm2ddl.auto: create-drop`
 
 * Le fichier est donc
 
-.application-dev.yml
-[source, yml]
-----
+*application-dev.yml*
+```yml
 spring:
    # [ ... ]
     datasource:
@@ -108,14 +105,13 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.NoDefaultJCacheRegionFactory
-----
+```
 
 Ensuite, il faut initialiser un fichier `data.sql` dans `src\main\resources`, qui va contenir les données à importer.
 Comme les données ne seront pas importées des csv, il faut les mettres dans ce fichier. On peut utiliser https://gist.github.com/hkarakose/cf7f1b5b241dad611ba01c0211f42108[un fichier déjà prêt]
 
-.data.sql
-[source, sql]
-----
+*data.sql*
+```sql
 
 -- #### DONNEES DEFAULT JHIPSTER
 --USER TABLE
@@ -138,4 +134,4 @@ INSERT INTO JHI_USER_AUTHORITY(USER_ID, AUTHORITY_NAME) VALUES(2, 'ROLE_USER');
 INSERT INTO JHI_USER_AUTHORITY(USER_ID, AUTHORITY_NAME) VALUES(3, 'ROLE_ADMIN');
 INSERT INTO JHI_USER_AUTHORITY(USER_ID, AUTHORITY_NAME) VALUES(3, 'ROLE_USER');
 INSERT INTO JHI_USER_AUTHORITY(USER_ID, AUTHORITY_NAME) VALUES(4, 'ROLE_USER');
-----
+```

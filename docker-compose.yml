@@ -1,0 +1,8 @@
+version: '3.5'
+services:
+    pdy-tutos:
+      container_name: pdy/tutos
+      build: .
+      image: pdy/tutos
+      ports:
+        - 1314:1313

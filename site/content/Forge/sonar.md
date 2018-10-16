@@ -1,19 +1,17 @@
-= Sonar
-Delaby Pierre
-:icons: font
-:toc: left
-:nofooter:
-:source-highlighter: coderay
-:stylesdir: css/
-:stylesheet: asciidoctor.css
+---
+title: "Sonar"
+date: 2018-10-15T10:25:04+02:00
+draft: false
+tags: ["sonar", "pic"]
+---
 
 
-== Docker
+## Docker
 
-=== Reference
+###  Reference
 * http://blog.baudson.de/blog/running-a-local-sonarqube-with-docker
 
-== Installation Local
+## Installation Local
 
 * seul : `docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube`
 
@@ -22,9 +20,9 @@ Delaby Pierre
 * On lance postgres on lui donnant une database et un user sonar `docker run --name sonar-postgres -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=secret -d postgres`
 * On lance sonarqube et on lui demande de se connecer   `docker run -d --name sonarqube --link sonar-postgres:pgsonar -p 9000:9000 -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=secret -e SONARQUBE_JDBC_URL=jdbc:postgresql://pgsonar:5432/sonar sonarqube:latest`
 
-== Installation Centos
+## Installation Centos
 
-=== PostGresql
+### PostGresql
 
 * Installer postgres : `sudo yum install postgresql-server`
 * Init the cluster : `sudo postgresql-setup initdb`
@@ -40,25 +38,25 @@ Delaby Pierre
 * Créer une nouvelle base : `CREATE DATABASE sonar OWNER sonar;
 * Quitter : `\q`
 
-=== Sonar
+### Sonar
 
-==== Fichiers
+#### Fichiers
 * Récupere : `wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.7.1.zip`
 * Unzip : `sudo unzip sonarqube-6.7.1.zip -d /opt`
 * Renommer : `sudo mv /opt/sonarqube-6.7.1 /opt/sonarqube`
 
-==== Configuration
+#### Configuration
 * Editer la conf : `sudo nano /opt/sonarqube/conf/sonar.properties`
-** Décommenter et editer
-----
+ * Décommenter et editer
+```
 sonar.jdbc.username=sonar
 sonar.jdbc.password=StrongPassword
-----
+```
 
-** Décommenter `#sonar.jdbc.url=jdbc:postgresql://localhost/sonar`
-** Décommenter et éditer `sonar.web.context=` pour `sonar.web.context=/sonar`
+ * Décommenter `#sonar.jdbc.url=jdbc:postgresql://localhost/sonar`
+ * Décommenter et éditer `sonar.web.context=` pour `sonar.web.context=/sonar`
 
-==== Administration
+#### Administration
 
 * Créer le groupe sonar : `groupadd sonar`
 * Créer l'user sonar : `useradd -c "Sonar System User" -d /opt/sonarqube -g sonar -s /bin/bash sonar`
@@ -66,8 +64,8 @@ sonar.jdbc.password=StrongPassword
 * OU Editer  ``/opt/sonarqube/bin/sonar.sh` : trouver RUN_AS_USER decommenter et y mettre l'username : `RUN_AS_USER=sonar` OU creer le fichier suivant
 * OU Créer un fichier pour la gestion : `sudo nano /etc/systemd/system/sonar.service`
 
-.sonar.service
-----
+*sonar.service*
+```
 [Unit]
 Description=SonarQube service
 After=syslog.target network.target
@@ -84,11 +82,16 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
-----
-==== Apache
+```
 
-.sonar.conf
-----
+#### Apache
+
+{{% notice warning %}}
+A vérifier, ne fonctionne probablement pas
+{{% /notice %}}
+
+*sonar.conf*
+```
 ProxyPass         /sonar  http://localhost:9000/sonar nocanon
 ProxyPassReverse  /sonar  http://localhost:9000/sonar
 ProxyRequests     Off
@@ -100,53 +103,50 @@ AllowEncodedSlashes NoDecode
   Order deny,allow
   Allow from all
 </Proxy>
-----
-
+```
 
 * Puis démarrer : `sudo systemctl start sonar`
 
 
-
-== Scanner
+## Scanner
 
 Commande simple : `mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=73bLOGIN643855`
 
-=== Scanner classique
+### Scanner classique
 * téléchargement : https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-windows.zip
 * extraire dans `C:\devtools\sonar-scanner`
 * ajouter une var d'env : `SONAR_SCANNER=C:\devtools\sonar-scanner`
 * ajouter au path : `%SONAR_SCANNER%\bin`
-* tester en cmd : `sonanr-scanner -h`
+* tester en cmd : `sonnar-scanner -h`
 
-=== Scanner windows
+### Scanner windows
 * cf : https://docs.sonarqube.org/display/SCAN/Scanning+on+Windows
 * installer aussi visual studio et le framework .net https://www.microsoft.com/fr-fr/download/details.aspx?id=53344
 
 
-== Analyse
+## Analyse
 
-=== Jenkins
+### Jenkins
 
 * Dans jenkins, global configuration,
-** checker _Enable injection of SonarQube server configuration as build environment variables_
+ * checker _Enable injection of SonarQube server configuration as build environment variables_
 
+### Vrac
 
-=== Vrac
+`sonar-scanner.bat -Dsonar.projectKey=projectkey -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=laclefgeneree`
 
-sonar-scanner.bat -Dsonar.projectKey=projectkey -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=8d99c03a40de7b477ab69d2a3f700d4d16a09c13
-
-=== Python
+### Python
 
 * tuto : https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner#AnalyzingwithSonarQubeScanner-Installation
 
-=== Angular project
+### Angular project
 
 On peut simplement faire `sonar-scanner.bat -Dsonar.projectKey=projectkey -Dsonar.language=ts -Dsonar.sources=src/app/ -Dsonar.host.url=http://localhost:9000 -Dsonar.login=laclefgeneree`
 
-Ou `sonar-scanner.bat -Dsonar.projectKey=projectkey -Dsonar.language=ts -Dsonar.sources=src/app/ -Dsonar.host.url=http://localhost:9000 -Dsonar.login=73bLOGIN643855`
+Ou `sonar-scanner.bat -Dsonar.projectKey=projectkey -Dsonar.language=ts -Dsonar.sources=src/app/ -Dsonar.host.url=http://localhost:9000 -Dsonar.login=laclefgeneree`
 
-== Installer le runner sur centos
-Sinon
+## Installer le runner sur centos
+
 * installer sur centos : `wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip`
 * `sudo unzip sonar-scanner-cli-3.0.3.778-linux.zip -d /opt/sonarqube/`
 * `sudo mv /opt/sonarqube/sonar-scanner-3.0.3.778-linux/ /opt/sonarqube/sonar-scanner`

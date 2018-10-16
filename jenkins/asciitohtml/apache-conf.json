@@ -1,6 +1,0 @@
-# dans jenkins
-{  
-  "publichtml":{
-    "path":"/var/www/html/doc"
-  }
-}
