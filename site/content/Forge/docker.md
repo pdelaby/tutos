@@ -19,3 +19,9 @@ tags: ["docker","ubuntu"]
 ## Configurer 
 * `sudo usermod -aG docker ${USER}` : s'ajouter sur le user group docker pour eviter de toujour mettre sudo
 * `su - ${USER}` : recharger
+
+## Installer docker-compose
+
+!! CHanger la versoin
+* `sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+* `sudo chmod +x /usr/local/bin/docker-compose`

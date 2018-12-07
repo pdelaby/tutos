@@ -13,9 +13,9 @@ J'ai par exemple un fichier csv
 *init-materiel.csv*
 ```csv
 id, nom, marque
-1,Chaudière Viessmann Gaz,Viessmann
-2,Chaudière Viessmann Fioul,Viessmann
-3,Chaudière Frisquet Basse Consommation,Frisquet
+1,PC 1, Dell
+2,PC2,Asus
+3,PC3,Inspiron
 ```
 
 et je le charge en utilisant un nouveau changeset

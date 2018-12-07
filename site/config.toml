@@ -4,15 +4,12 @@ title = "Pdelaby - Tutos"
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn-pdy"
 #theme = "ga-hugo-theme"
-tags = []
-features = []
 
 [params]
   description = "Pdelaby - Tutos"
   author = "Delaby Pierre"
   #showVisitedLinks = true
   themeVariant = "blue"
-  tocMode = "aside" # navbar | aside | page
 
 
 # For search functionnality

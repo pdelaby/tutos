@@ -5,6 +5,12 @@ draft: false
 tags: ["sonar", "pic"]
 ---
 
+## TL;DR
+
+Sur un projet spring : 
+
+* demarrer sonar : `docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube`
+* lancer une analyse : `mvn test sonar:sonar`
 
 ## Docker
 

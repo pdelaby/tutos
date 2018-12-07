@@ -5,9 +5,39 @@ draft: false
 tags: ["jenkins","pic"]
 ---
 
-## Installer Jenkinsfile
 
-* Suivre : https://www.vultr.com/docs/how-to-install-jenkins-on-centos-7
+## Installation
+
+### Sur ubuntu 
+
+* avoir java d'installé
+
+* suivre : https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04
+* `wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -`
+* `echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list`
+* `sudo apt-get update`
+* `sudo apt-get install jenkins`
+ * Si il refuse pour une histoire de *deaemon* , ajouter les package universe : `sudo add-apt-repository universe`  
+ * Si jenkins ne build pas sur docker : https://stackoverflow.com/questions/20430371/my-docker-container-has-no-internet
+ * Si il veux pas cloner TFS ou probleme de cipher
+  * aller editer le /etc/ssh/ssh_config
+* ajouter `KexAlgorithms diffie-hellman-group1-sha1,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1`
+  * et `Ciphers aes256-cbc,aes192-cbc,aes128-cbc`
+
+
+* Pour le rajouter avec docker `sudo usermod -a -G docker jenkins`
+
+* Attention a démarrer jenkins en classique, si il est demarré en sudo ça va foutre la merde durant le sh
+
+Si il ne veux pas démarrer docker (pas de mémoire : )
+
+Editer `/etc/sysconfig/jenkins` et rajouter  `-Xmx1024m -XX:MaxPermSize=512m` dans les arguments
+
+
+## Plugins
+
+* docker
+* docker-build-step
 
 ## Tomcat
 ### Installer et configurer

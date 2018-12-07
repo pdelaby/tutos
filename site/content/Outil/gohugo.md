@@ -22,7 +22,7 @@ Utilisation de VsCode recommandée
  * `echo 'theme = "learn"' >> config.toml`
 
 {{% notice warning %}}
-Attention, si il y a un submodule, il faut spécifier `--recurse-submodules` lors du clônage du dépot : `git clone --recurse-submodules https//monurl`
+Attention, si il y a un submodule, il faut spécifier `--recurse-submodules` lors du clônage du dépot : `gi t clone --recurse-submodules https//monurl`
 {{% /notice %}}
 
 
